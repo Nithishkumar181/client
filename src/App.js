@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import NavbarEx from './Navbar';
 import Home from './pages/Home';
@@ -26,11 +26,10 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <div>
-     
-      {isAuth && !['/login', '/register'].includes(location.pathname) && <NavbarEx />}
-
-      <Routes>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <div>
+        {isAuth && !['/login', '/register'].includes(location.pathname) && <NavbarEx />}
+        <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -49,8 +48,9 @@ const App = () => {
         <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>}/>
 
         <Route path="*" element={<Navigate to="/login"/>}/>
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 
