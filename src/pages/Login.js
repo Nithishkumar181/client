@@ -4,7 +4,6 @@ import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [showForm, setShowForm] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -38,50 +37,41 @@ const Login = () => {
 
   return (
     <div className="boss">
-      {!showForm ? (
-        <button className="login-button" onClick={() => setShowForm(true)}>
-          Login
-        </button>
-      ) : (
-        <form className="login-form" onSubmit={login}>
-          <h1>Welcome!</h1>
-          <p>
-            Create your New Account |{' '}
-            <a
-              href="/register"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/register');
-              }}
-            >
-              Register
-            </a>
-          </p>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
-            />
-          </div>
-          <button type="submit" className="submit-button">Login</button>
-        </form>
-      )}
+      <form className="login-form" onSubmit={login}>
+        <h1>Welcome!</h1>
+        <p>
+          Create your New Account |{' '}
+          <span
+            style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+            onClick={() => navigate('/register')}
+          >
+            Register
+          </span>
+        </p>
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button type="submit" className="submit-button">Login</button>
+      </form>
     </div>
   );
 };
