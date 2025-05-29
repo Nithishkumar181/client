@@ -1,0 +1,58 @@
+body,html{
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f2f5;
+   background-image: url('https://media.istockphoto.com/id/1425875767/vector/angled-blue-red-abstract-dark-background.jpg?s=612x612&w=0&k=20&c=I5Bwz0-ijmvUv_dPRiGde_OmcGq7nnMo-UXGJ7K5mmE=');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.delete-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+ 
+}
+
+.delete-container h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-size: 1.8rem;
+}
+
+.delete-container input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.delete-container input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.delete-container button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #e74c3c;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-container button:hover {
+  background-color: #c0392b;
+}

@@ -1,0 +1,19 @@
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .card-title {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  footer h5 {
+    margin-bottom: 1rem;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  

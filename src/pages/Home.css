@@ -1,0 +1,394 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+.login-button {
+  padding: 15px 10px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  width:fit-content;
+}
+
+.login-form {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+
+
+.deluxe{
+    text-align: center;
+    display: flex;
+    padding: auto;
+    margin-bottom: 1rem;
+    padding-inline: 10px;
+    column-gap: 15px;
+}
+h2{
+    text-align: center;
+}
+.first {
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    color: #f4f4f4;
+    padding: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+ background-image: url("https://pic.pikbest.com/02/22/35/81p888piC2IA.jpg!sw800");
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 600px;
+}
+.login-form {
+ 
+  padding: 30px;
+
+  box-shadow:0cqb;
+  width: 100%;
+  max-width: 400px; 
+}
+h1{
+  text-align: center;
+ 
+}
+p{
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.input-group {
+  margin-bottom: 15px;
+  transition: 0.3s ease all;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+.bore{
+  background-color:azure;
+}
+
+
+
+
+  
+register
+
+.container {
+  padding: 30px;
+  max-width: 50px;
+  margin: auto;
+  border-radius: 10px;
+  
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+.face{
+    background-image: url("https://media.istockphoto.com/id/1408527359/vector/holographic-texture-pearlescent-background-pink-neon-gradient-abstract-background-chrome.jpg?s=612x612&w=0&k=20&c=6VV7VU228lAIZTR2W-h6FoG5t1N2tBCPikaG2cJSx70=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 0px;
+    padding-top:-10px;
+}
+h{
+  align-items: center;
+  display: flex;
+  padding-left:22%; 
+  position: relative;
+  top:-8em;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger;
+
+}
+.star{
+  padding-left: 10px;
+}
+n{
+  align-items: center;
+  display: flex;
+  padding-left:23%; 
+  position: relative;
+  top:-6em;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger;}
+
+
+  .super{
+    background-color: #45a049;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    font-size: 15px;
+    transition: all 0.3s ease-in-out;
+    width: 600px;
+    background: linear-gradient(135deg, #6e8efb, #b4307f);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+  }
+  .super:hover{
+    transform: scale(1.1) rotateY(10deg);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #ff758c, #e0075e);
+  }
+  i{
+    align-items: center;
+    display: flex;
+    padding-left:23%; 
+    position: relative;
+    top:-6em;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+  }
+.best{
+  background-color: #45a049;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  width: 600px;
+  background: linear-gradient(135deg, #6e8efb, #b4307f);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+}
+.best:hover{
+  transform: scale(1.1) rotateY(10deg);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(135deg, #ff758c, #e0075e);
+}
+.hot{
+  background-color: #45a049;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  width: 600px;
+  background: linear-gradient(135deg, #6e8efb, #b4307f);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+}
+.hot:hover{
+  transform: scale(1.1) rotateY(10deg);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(135deg, #ff758c, #e0075e);
+}
+.light{
+  background-color: #45a049;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  width: 600px;
+  background: linear-gradient(135deg, #6e8efb, #b4307f);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+.light:hover{
+  transform: scale(1.1) rotateY(10deg);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(135deg, #ff758c, #e0075e);
+}
+.back{
+  background-image: url("https://media.istockphoto.com/id/2197629605/vector/holographic-gradient-pearlescent-background-vintage-cover-abstract-texture-blur-glitter.jpg?s=612x612&w=0&k=20&c=Q6h5A6CRMKLzVxUkUu0sIDFz33_WtXj3v4G_FKv7GeI=");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gold{
+  background-image: url("https://media.istockphoto.com/id/1132218419/vector/color-gradation-abstract-gradient-background-vector-pastel-colorful-soft-blur-pattern-bright.jpg?s=612x612&w=0&k=20&c=JzR6KG8y6pJ3uJiKLJ6umjP6XlZr7tIYOlE3l_ZJDqI=");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body {
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.toy-form {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fff8f0;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: float 4s ease-in-out infinite;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  color: #ff6f91;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.toy-input {
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 2px solid #ffcbf2;
+  width: 80%;
+  font-size: 16px;
+  background-color: #fff0f6;
+  transition: 0.3s;
+}
+
+.toy-input:focus {
+  outline: none;
+  border-color: #ff85a2;
+  background-color: #ffe0ec;
+}
+
+.submit-button {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  padding: 12px;
+  font-size: 18px;
+  background: linear-gradient(90deg, #f9a8d4, #fbcfe8);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background: linear-gradient(90deg, #f472b6, #fda4af);
+  transform: scale(1.05);
+}
+
+cara 
+.custom-caption h5 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #FFD700; 
+  text-shadow: 2px 2px 6px rgb(255, 32, 28); 
+  font-family: 'Georgia', serif;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.custom-caption p {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+  font-family: 'Trebuchet MS', sans-serif;
+  margin-top: 0.5rem;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.custom-caption {
+  background: rgba(0, 0, 0, 0.4); 
+  padding: 20px;
+  border-radius: 10px;
+}
+h5{
+  font-size:xx-large;
+  text-decoration: white;
+}
+
+
+

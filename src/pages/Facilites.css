@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  
+}
+
+.facilities {
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color:rgb(249, 249, 249)
+}
+
+.page-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  text-decoration: #ffff;
+  text-shadow: white;
+}
+.resort-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.resort-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.resort-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+}
+
+.resort-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.resort-content {
+  padding: 1.2rem;
+  text-align: left;
+}
+
+.resort-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.resort-content p {
+  margin: 0.3rem 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+.note {
+  font-style: italic;
+  color: #007BFF;
+  margin-top: 0.5rem;
+}
+
+
+.top-right-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.book-now-small {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.book-now-small:hover {
+  background-color: #ff4c4c;
+  transform: scale(1.05);
+}
+.facilities {
+  position: relative;
+}

@@ -1,0 +1,20 @@
+.boss {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    position: relative;
+    background-image: url('https://media.istockphoto.com/id/2181910847/photo/sustainable-green-co-working-office-space.jpg?s=612x612&w=0&k=20&c=q3hVV7Xrdyj5iEvdvAAO3KX4UpNYCqDtzkf2DEDNOLQ=');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+  .login-form {
+    background-color: beige;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+  }
+
+
