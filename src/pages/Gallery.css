@@ -1,0 +1,134 @@
+.gallery-container {
+  padding: 2rem;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+}
+
+.gallery-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom styling for react-image-gallery */
+.image-gallery {
+  width: 100%;
+  height: auto;
+}
+
+.image-gallery-slide img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+.image-gallery-thumbnails-wrapper {
+  margin-top: 20px;
+}
+
+.image-gallery-thumbnail {
+  transition: transform 0.3s ease;
+}
+
+.image-gallery-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.image-gallery-thumbnail.active {
+  border: 2px solid #3498db;
+}
+
+.image-gallery-description {
+  background: rgba(0, 0, 0, 0.7) !important;
+  bottom: 70px !important;
+}
+
+.custom-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.custom-controls h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.gallery-info {
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+  color: #666;
+  line-height: 1.6;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading state */
+.image-gallery-image.loading {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gallery-container {
+    padding: 1rem;
+  }
+
+  .gallery-title {
+    font-size: 2rem;
+  }
+
+  .image-gallery-slide img {
+    height: 40vh;
+  }
+
+  .gallery-wrapper {
+    padding: 10px;
+  }
+
+  .custom-controls h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Fullscreen mode */
+.image-gallery-fullscreen-button {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.image-gallery-play-button {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.image-gallery-fullscreen .image-gallery-slide img {
+  height: 90vh;
+}
