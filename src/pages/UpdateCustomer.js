@@ -73,3 +73,72 @@ function UpdateCustomer() {
       setError(err.message || 'Failed to update booking. Please try again.');
       console.error('Error updating booking:', err);
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const fields = [
+    { name: 'customer_name', label: 'Customer Name', type: 'text' },
+    { name: 'customer_age', label: 'Age', type: 'number' },
+    { name: 'customer_address', label: 'Address', type: 'text' },
+    { name: 'customer_mobileNo', label: 'Mobile Number', type: 'tel' },
+    { name: 'customer_aadharno', label: 'Aadhar Number', type: 'text' }
+  ];
+
+  return (
+    <div className="update-container">
+      <div className="form-card">
+        <h2 className="title">
+          <FontAwesomeIcon icon={faUserEdit} className="icon" /> Update Booking
+        </h2>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="success-message">
+            {success}
+          </div>
+        )}
+
+        <div className="input-group">
+          <input
+            className="input"
+            type="text"
+            placeholder="Room ID"
+            value={roomId}
+            onChange={e => setRoomId(e.target.value)}
+            disabled={loading}
+          />
+        </div>
+
+        {fields.map(field => (
+          <div key={field.name} className="input-group">
+            <input
+              type={field.type}
+              name={field.name}
+              className="input"
+              placeholder={field.label}
+              value={formData[field.name]}
+              onChange={handleChange}
+              disabled={loading}
+            />
+          </div>
+        ))}
+
+        <button 
+          className="update-button" 
+          onClick={handleUpdate}
+          disabled={loading}
+        >
+          {loading ? 'Updating...' : 'Update Booking'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default UpdateCustomer;
