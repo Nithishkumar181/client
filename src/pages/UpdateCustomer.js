@@ -12,11 +12,7 @@ function UpdateCustomer() {
     setupdateData({ ...updatedata, [e.target.name]: e.target.value });
 
   const update = async () => {
-<<<<<<< HEAD
-    await axios.put(`https://livebackend-1-07tz.onrender.com/update-booking/${room_id}`, updatedata);
-=======
     await axios.put(`https://lastbackends.onrender.com/update-booking/${room_id}`, updatedata);
->>>>>>> aec2135 (Initial commit with backend URL updates)
     alert("Booking updated");
   };
 

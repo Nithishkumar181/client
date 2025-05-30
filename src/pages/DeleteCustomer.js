@@ -8,11 +8,7 @@ function DeleteCustomer() {
   const [room_id, setRoomId] = useState('');
    
   const handleDelete = async () => {
-<<<<<<< HEAD
-    await axios.delete(`https://livebackend-1-07tz.onrender.com/delete-booking/${room_id}`);
-=======
     await axios.delete(`https://lastbackends.onrender.com/delete-booking/${room_id}`);
->>>>>>> aec2135 (Initial commit with backend URL updates)
     alert("Booking Deleted");
   };
 
