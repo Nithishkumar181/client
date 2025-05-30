@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-<<<<<<< HEAD
 import { BrowserRouter } from 'react-router-dom';
 import { CartProvider } from './Context/CartContext';
 import App from './App';
@@ -18,7 +17,6 @@ root.render(
     </CartProvider>
   </BrowserRouter>
 );
-=======
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -43,4 +41,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
->>>>>>> aec2135 (Initial commit with backend URL updates)
+
