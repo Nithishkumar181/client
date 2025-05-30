@@ -62,6 +62,15 @@ const fetchWithTimeout = async (url, options = {}, timeout = 5000) => {
 };
 
 export const api = {
+    async testConnection() {
+        try {
+            const response = await this.request('/test');
+            return response;
+        } catch (error) {
+            throw new ApiError('Server connection test failed', error.statusCode || 500);
+        }
+    },
+
     async request(endpoint, options = {}) {
         const token = getToken();
         const headers = {

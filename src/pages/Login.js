@@ -5,8 +5,8 @@ import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('test@example.com'); // Pre-filled for testing
-  const [password, setPassword] = useState('password123'); // Pre-filled for testing
+  const [email, setEmail] = useState('admin@example.com'); // Pre-filled for testing
+  const [password, setPassword] = useState('admin123!@#'); // Pre-filled for testing
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [serverStatus, setServerStatus] = useState('checking');
