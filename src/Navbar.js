@@ -12,6 +12,8 @@ const NavbarEx = () => {
   const location = useLocation();
   const { cartItems, clearCart } = useCart();
   const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const isAdmin = user.role === 'admin';
 
   const handleLogout = () => {
     // Clear auth data
@@ -46,64 +48,63 @@ const NavbarEx = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            {/* Main Navigation */}
-            <Nav.Link 
-              as={Link} 
-              to="/home" 
-              className={isActive('/home')}
-            >
-              Home
-            </Nav.Link>
+            {isAdmin ? (
+              // Admin Navigation
+              <>
+                <Nav.Link
+                  as={Link}
+                  to="/admin"
+                  className={isActive('/admin')}
+                >
+                  Dashboard
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/manage-rooms"
+                  className={isActive('/manage-rooms')}
+                >
+                  Manage Rooms
+                </Nav.Link>
+              </>
+            ) : (
+              // User Navigation
+              <>
+                <Nav.Link
+                  as={Link}
+                  to="/home"
+                  className={isActive('/home')}
+                >
+                  Home
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/facilities"
+                  className={isActive('/facilities')}
+                >
+                  Facilities
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/services"
+                  className={isActive('/services')}
+                >
+                  Services
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/cart"
+                  className={`cart-link ${isActive('/cart')}`}
+                >
+                  Cart
+                  {cartItems.length > 0 && (
+                    <span className="cart-badge">{cartItems.length}</span>
+                  )}
+                </Nav.Link>
+              </>
+            )}
 
-            <Nav.Link 
-              as={Link} 
-              to="/facilities" 
-              className={isActive('/facilities')}
-            >
-              Facilities
-            </Nav.Link>
-
-            <Nav.Link 
-              as={Link} 
-              to="/services" 
-              className={isActive('/services')}
-            >
-              Services
-            </Nav.Link>
-
-            {/* Cart with Badge */}
-            <Nav.Link 
-              as={Link} 
-              to="/cart" 
-              className={`cart-link ${isActive('/cart')}`}
-            >
-              Cart
-              {cartItems.length > 0 && (
-                <span className="cart-badge">{cartItems.length}</span>
-              )}
-            </Nav.Link>
-
-            {/* Customer Management Dropdown */}
-            <NavDropdown 
-              title="Manage Bookings" 
-              id="booking-dropdown"
-              className="nav-dropdown"
-            >
-              <NavDropdown.Item as={Link} to="/bookedrooms">
-                Booked Rooms
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/listcustomers">
-                Customer List
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/updatecustomer">
-                Update Booking
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/deletecustomer">
-                Cancel Booking
-              </NavDropdown.Item>
-            </NavDropdown>
-
-            <Nav.Link 
+            {/* Show About link for all users */}
+            <Nav.Link
               as={Link} 
               to="/about" 
               className={isActive('/about')}
@@ -112,19 +113,30 @@ const NavbarEx = () => {
             </Nav.Link>
 
             {/* User Menu */}
-            <NavDropdown 
+            {/* User Profile Dropdown */}
+            <NavDropdown
               title={
                 <i className="fas fa-user-circle"></i>
-              } 
+              }
               id="user-dropdown"
               className="nav-dropdown"
               align="end"
             >
               {token ? (
                 <>
+                  <NavDropdown.Item>
+                    Signed in as: <br />
+                    <strong>{user.firstName} {user.lastName}</strong>
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item as={Link} to="/profile">
                     Profile
                   </NavDropdown.Item>
+                  {!isAdmin && (
+                    <NavDropdown.Item as={Link} to="/my-bookings">
+                      My Bookings
+                    </NavDropdown.Item>
+                  )}
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>
                     Logout
