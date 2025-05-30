@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
@@ -29,6 +30,14 @@ const PrivateRoute = ({ children }) => {
 
   // Render protected route
   return children;
+=======
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+
+const PrivateRoute = ({ children }) => {
+  const isAuth = localStorage.getItem('auth') === 'true';
+  return isAuth ? children : <Navigate to="/login" />;
+>>>>>>> aec2135 (Initial commit with backend URL updates)
 };
 
 export default PrivateRoute;

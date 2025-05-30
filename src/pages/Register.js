@@ -17,7 +17,11 @@ const AddCustomer = () => {
   };
 
   const handleSubmit = async () => {
+<<<<<<< HEAD
     await axios.post('https://livebackend-1-07tz.onrender.com/add-booking/', data);
+=======
+    await axios.post('https://lastbackends.onrender.com/add-booking/', data);
+>>>>>>> aec2135 (Initial commit with backend URL updates)
     alert('Booking Added');
   };
 

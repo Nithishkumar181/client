@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import { api } from '../api';
 import './Login.css';
@@ -155,6 +156,87 @@ const Login = () => {
           </pre>
         </div>
       )}
+=======
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
+
+
+const Login = () => {
+  const navigate = useNavigate();
+  const [showForm, setShowForm] = useState(false);
+  const [email, setemail] = useState('');
+  const [password, setPassword] = useState('');
+
+    const login = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch('https://lastbackends.onrender.com/admin-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      localStorage.setItem('auth', 'true');
+      localStorage.setItem('user', email);
+      alert(data.message);
+      navigate('/home');
+    } else {
+      alert(data.message);
+    }
+  };
+  return (
+    <div>
+      <div className="boss">
+        {!showForm ? (
+          <button className="login-button" onClick={() => setShowForm(true)}>
+            Login
+          </button>
+        ) : (
+          <form className="login-form" onSubmit={login}>
+            <h1>Welcome!</h1>
+            <p>
+              Create your New Account |{' '}
+              <a
+                href="/register"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/Register');
+                }}
+              >
+                Register
+              </a>
+            </p>
+            <div className="input-group">
+              <label htmlFor="email">email</label>
+              <input
+                type="text"
+                id="email"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" className="submit-button">Login</button>
+          </form>
+        )}
+      </div>
+>>>>>>> aec2135 (Initial commit with backend URL updates)
     </div>
   );
 };
