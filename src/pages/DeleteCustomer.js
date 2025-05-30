@@ -1,29 +1,72 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 import './DeleteCustomer.css';
 
-
-
 function DeleteCustomer() {
-  const [room_id, setRoomId] = useState('');
+  const [roomId, setRoomId] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
    
   const handleDelete = async () => {
-<<<<<<< HEAD
-    await axios.delete(`https://livebackend-1-07tz.onrender.com/delete-booking/${room_id}`);
-=======
-    await axios.delete(`https://lastbackends.onrender.com/delete-booking/${room_id}`);
->>>>>>> aec2135 (Initial commit with backend URL updates)
-    alert("Booking Deleted");
+    if (!roomId.trim()) {
+      setError('Please enter a Room ID');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      await api.deleteBooking(roomId);
+      setSuccess('Booking deleted successfully');
+      setRoomId(''); // Clear input after successful deletion
+    } catch (err) {
+      setError(err.message || 'Failed to delete booking. Please try again.');
+      console.error('Error deleting booking:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div class="car">
-  <div className="delete-container">
-    <h2>Delete Booking</h2>
-    <input placeholder="Room ID" onChange={e => setRoomId(e.target.value)} /><br />
-    <button onClick={handleDelete}>Delete</button>
-  </div>
-  </div>
-);
+    <div className="car">
+      <div className="delete-container">
+        <h2>Delete Booking</h2>
+        
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="success-message">
+            {success}
+          </div>
+        )}
+
+        <div className="input-group">
+          <input 
+            type="text"
+            placeholder="Room ID" 
+            value={roomId}
+            onChange={e => setRoomId(e.target.value)}
+            disabled={loading}
+          />
+        </div>
+
+        <button 
+          onClick={handleDelete}
+          disabled={loading}
+          className="delete-button"
+        >
+          {loading ? 'Deleting...' : 'Delete Booking'}
+        </button>
+      </div>
+    </div>
+  );
 }
+
 export default DeleteCustomer;

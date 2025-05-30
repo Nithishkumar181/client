@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ children }) => {
-  // Get JWT token
+const PrivateRoute = ({ children, requiredRole }) => {
+  // Get JWT token and user data
   const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
   
   // Check if token exists and is not expired
   const isValidToken = () => {
@@ -20,6 +20,12 @@ const PrivateRoute = ({ children }) => {
     }
   };
 
+  // Check if user has required role
+  const hasRequiredRole = () => {
+    if (!requiredRole) return true; // If no role required, allow access
+    return user.role === requiredRole;
+  };
+
   // If token is invalid or expired, redirect to login
   if (!isValidToken()) {
     // Clear any invalid tokens
@@ -28,16 +34,13 @@ const PrivateRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
+  // If user doesn't have required role, redirect to home
+  if (!hasRequiredRole()) {
+    return <Navigate to="/home" replace />;
+  }
+
   // Render protected route
   return children;
-=======
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-
-const PrivateRoute = ({ children }) => {
-  const isAuth = localStorage.getItem('auth') === 'true';
-  return isAuth ? children : <Navigate to="/login" />;
->>>>>>> aec2135 (Initial commit with backend URL updates)
 };
 
 export default PrivateRoute;

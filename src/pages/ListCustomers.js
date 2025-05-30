@@ -1,43 +1,83 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 import './ListCustomers.css';
 
 function ListCustomers() {
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get("https://livebackend-1-07tz.onrender.com/bookings")
-=======
-    axios.get("https://lastbackends.onrender.com/bookings")
->>>>>>> aec2135 (Initial commit with backend URL updates)
-    .then(res => setBookings(res.data));
+    const fetchBookings = async () => {
+      try {
+        const response = await api.getBookings();
+        setBookings(response.bookings || []);
+        setError(null);
+      } catch (err) {
+        setError('Failed to load bookings. Please try again later.');
+        console.error('Error fetching bookings:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBookings();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="so">
+        <div className="container">
+          <h2 style={{ color: 'white' }}>Loading bookings...</h2>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="so">
+        <div className="container">
+          <h2 style={{ color: 'white' }}>Error</h2>
+          <p style={{ color: 'red' }}>{error}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div class="so">
-    <div className="container">
-      <h2 style={{ color: 'white' }}>All Bookings</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Room ID</th><th>Name</th><th>Age</th><th>Address</th><th>Mobile</th><th>Aadhar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((b, i) => (
-            <tr key={i}>
-              <td data-label="Room ID">{b.room_id}</td>
-              <td data-label="Name">{b.customer_name}</td>
-              <td data-label="Age">{b.customer_age}</td>
-              <td data-label="Address">{b.customer_address}</td>
-              <td data-label="Mobile">{b.customer_mobileNo}</td>
-              <td data-label="Aadhar">{b.customer_aadharno}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <div className="so">
+      <div className="container">
+        <h2 style={{ color: 'white' }}>All Bookings</h2>
+        {bookings.length === 0 ? (
+          <p style={{ color: 'white' }}>No bookings found.</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Room ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Aadhar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map((booking, index) => (
+                <tr key={index}>
+                  <td data-label="Room ID">{booking.room_id}</td>
+                  <td data-label="Name">{booking.customer_name}</td>
+                  <td data-label="Age">{booking.customer_age}</td>
+                  <td data-label="Address">{booking.customer_address}</td>
+                  <td data-label="Mobile">{booking.customer_mobileNo}</td>
+                  <td data-label="Aadhar">{booking.customer_aadharno}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }

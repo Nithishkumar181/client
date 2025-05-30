@@ -1,51 +1,75 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { api } from '../api';
 import './UpdateCustomer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'; 
 
 function UpdateCustomer() {
-  const [room_id, setRoomId] = useState();
-  const [updatedata, setupdateData] = useState({});
+  const [roomId, setRoomId] = useState('');
+  const [formData, setFormData] = useState({
+    customer_name: '',
+    customer_age: '',
+    customer_address: '',
+    customer_mobileNo: '',
+    customer_aadharno: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleChange = e =>
-    setupdateData({ ...updatedata, [e.target.name]: e.target.value });
-
-  const update = async () => {
-<<<<<<< HEAD
-    await axios.put(`https://livebackend-1-07tz.onrender.com/update-booking/${room_id}`, updatedata);
-=======
-    await axios.put(`https://lastbackends.onrender.com/update-booking/${room_id}`, updatedata);
->>>>>>> aec2135 (Initial commit with backend URL updates)
-    alert("Booking updated");
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  return (
-    <div className="update-container">
-      <div className="form-card">
-        <h2 className="title">
-          <FontAwesomeIcon icon={faUserEdit} className="icon" /> Update Booking
-        </h2>
-        <input
-          className="input"
-          placeholder="Room ID"
-          onChange={e => setRoomId(e.target.value)}
-        />
-        <br />
-        {["customer_name", "customer_age", "customer_address", "customer_mobileNo", "customer_aadharno"].map(field => (
-          <input
-            key={field}
-            name={field}
-            className="input"
-            placeholder={field.replace("_", " ")}
-            onChange={handleChange}
-          />
-        ))}
-        <br />
-        <button className="update-button" onClick={update}>Update</button>
-      </div>
-    </div>
-  );
-}
+  const validateForm = () => {
+    if (!roomId.trim()) {
+      setError('Please enter a Room ID');
+      return false;
+    }
 
-export default UpdateCustomer;
+    // Check if at least one field is filled
+    const hasChanges = Object.values(formData).some(value => value.trim() !== '');
+    if (!hasChanges) {
+      setError('Please fill at least one field to update');
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleUpdate = async () => {
+    if (!validateForm()) return;
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      // Remove empty fields from the update data
+      const updateData = Object.entries(formData).reduce((acc, [key, value]) => {
+        if (value.trim() !== '') {
+          acc[key] = value;
+        }
+        return acc;
+      }, {});
+
+      await api.updateBooking(roomId, updateData);
+      setSuccess('Booking updated successfully');
+      
+      // Clear form after successful update
+      setRoomId('');
+      setFormData({
+        customer_name: '',
+        customer_age: '',
+        customer_address: '',
+        customer_mobileNo: '',
+        customer_aadharno: ''
+      });
+    } catch (err) {
+      setError(err.message || 'Failed to update booking. Please try again.');
+      console.error('Error updating booking:', err);
+    } finally {
