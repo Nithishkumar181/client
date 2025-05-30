@@ -172,7 +172,7 @@ const Login = () => {
     e.preventDefault();
 
     const res = await fetch('https://lastbackends.onrender.com/admin-login', {
-      method: 'POST',
+      method: 'POST', 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
