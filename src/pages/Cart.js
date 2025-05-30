@@ -12,8 +12,7 @@ const Cart = () => {
 
   // Calculate total price
   const total = cartItems.reduce((sum, item) => {
-    const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-    return sum + (price * item.quantity);
+    return sum + (item.price * item.quantity);
   }, 0);
 
   const handleCheckout = async () => {
@@ -91,7 +90,7 @@ const Cart = () => {
                       </div>
                       <Card.Text>{item.description}</Card.Text>
                       <div className="price-quantity">
-                        <span className="price">{item.price}</span>
+                        <span className="price">₹{item.price.toLocaleString()} per night</span>
                         <span className="quantity">Quantity: {item.quantity}</span>
                       </div>
                     </Card.Body>
@@ -109,16 +108,16 @@ const Cart = () => {
               <div className="summary-details">
                 <div className="summary-line">
                   <span>Subtotal</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>₹{total.toLocaleString()}</span>
                 </div>
                 <div className="summary-line">
                   <span>Taxes</span>
-                  <span>${(total * 0.1).toFixed(2)}</span>
+                  <span>₹{Math.round(total * 0.1).toLocaleString()}</span>
                 </div>
                 <hr />
                 <div className="summary-total">
                   <span>Total</span>
-                  <span>${(total * 1.1).toFixed(2)}</span>
+                  <span>₹{Math.round(total * 1.1).toLocaleString()}</span>
                 </div>
               </div>
               <Button

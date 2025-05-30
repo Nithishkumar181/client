@@ -10,12 +10,16 @@ import './Navbar.css';
 const NavbarEx = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
   const token = localStorage.getItem('token');
 
   const handleLogout = () => {
+    // Clear auth data
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    // Clear cart data
+    clearCart();
+    // Redirect to login
     navigate('/login');
   };
 

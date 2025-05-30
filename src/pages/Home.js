@@ -7,7 +7,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useCart } from '../Context/CartContext';
 
 
@@ -27,7 +26,8 @@ const handleAddToCart = (room) => {
       title: 'KG Apartment = 1' ,
       image: 'https://media.istockphoto.com/id/1815808691/photo/luxury-bedroom-suite-in-resort-high-rise-hotel-with-cushion.webp?a=1&b=1&s=612x612&w=0&k=20&c=UZ72TuOX4FJrasB3Ft5K7Lqzj8r2gTQubccH2CDLg2w=',
       description: 'Modern elegance met comfort, with high-tech amenities, soundproof walls, and a curated minibar.',
-      price: '₹2,999 per night',
+      price: 2999,
+      displayPrice: '₹2,999 per night',
       
     },
     {
@@ -35,56 +35,64 @@ const handleAddToCart = (room) => {
       title: 'Ocean View Suite = 2',
       image: 'https://media.istockphoto.com/id/957080876/photo/dark-wooden-luxury-bedroom-corner.jpg?s=612x612&w=0&k=20&c=f3kUPd83oTdAOSQtE1dmJptztSqLJfgEYki4PN26A3A=',
       description: 'Wake up to the sound of waves in this luxurious suite with a panoramic sea view.',
-      price: '₹4,499 per night',
+      price: 4499,
+      displayPrice: '₹4,499 per night',
     },
     {
       id: 3,
       title: 'KG Apartment = 3',
       image: 'https://thumbs.dreamstime.com/b/master-bedroom-presidential-suite-five-star-hotel-day-time-32794035.jpg?w=768',
       description: 'Modern elegance met comfort, with high-tech amenities, soundproof walls, and a curated minibar.',
-      price: '₹2,999 per night',
+      price: 2999,
+      displayPrice: '₹2,999 per night',
     },
     {
       id: 4,
       title: 'Ocean View Suite = 4',
       image: 'https://thumbs.dreamstime.com/b/luxury-hotel-room-2-29598961.jpg?w=768',
       description: 'Wake up to the sound of waves in this luxurious suite with a panoramic sea view.',
-      price: '₹4,499 per night',
+      price: 4499,
+      displayPrice: '₹4,499 per night',
     },
     {
       id: 5,
       title: 'KG Apartment = 5',
       image: 'https://media.gettyimages.com/id/184609057/photo/luxury-hotel-room.jpg?s=612x612&w=0&k=20&c=NN1OTddvUxGx-CNSHYe2SQvsV7diMg8AByIlnHM39Xw=',
       description: 'Modern elegance met comfort, with high-tech amenities, soundproof walls, and a curated minibar.',
-      price: '₹2,999 per night',
+      price: 2999,
+      displayPrice: '₹2,999 per night',
     },
     {
       id: 6,
       title: 'Ocean View Suite = 6',
       image: 'https://thumbs.dreamstime.com/b/red-room-hotel-2217528.jpg?w=768',
       description: 'Wake up to the sound of waves in this luxurious suite with a panoramic sea view.',
-      price: '₹4,499 per night',
+      price: 4499,
+      displayPrice: '₹4,499 per night',
     },
     {
       id: 7,
       title: 'KG Apartment = 7 ',
       image: 'https://thumbs.dreamstime.com/b/hotel-room-22008848.jpg?w=768',
       description: 'Modern elegance met comfort, with high-tech amenities, soundproof walls, and a curated minibar.',
-      price: '₹2,999 per night',
+      price: 2999,
+      displayPrice: '₹2,999 per night',
     },
     {
       id: 8,
       title: 'Ocean View Suite = 8 ',
       image: 'https://thumbs.dreamstime.com/b/luxury-hotel-room-2-29598961.jpg?w=768',
       description: 'Wake up to the sound of waves in this luxurious suite with a panoramic sea view.',
-      price: '₹4,499 per night',
+      price: 4499,
+      displayPrice: '₹4,499 per night',
     },
     {
       id: 9,
       title: 'KG Apartment = 9',
       image: 'https://thumbs.dreamstime.com/b/hotel-room-22007891.jpg?w=768',
       description: 'Modern elegance met comfort, with high-tech amenities, soundproof walls, and a curated minibar.',
-      price: '₹2,999 per night',
+      price: 2999,
+      displayPrice: '₹2,999 per night',
     },
   ];
 
@@ -96,7 +104,7 @@ const handleAddToCart = (room) => {
 
 
   return (
-    <div class="bore">
+    <div className="bore">
          <Container>
         <Row>
   <Col>
@@ -109,7 +117,6 @@ const handleAddToCart = (room) => {
           height={550}
         />
         <Carousel.Caption className="custom-caption">
-          <h5 ></h5>
           <p>Hospitality service with premium care</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -121,7 +128,6 @@ const handleAddToCart = (room) => {
           height={550}
         />
         <Carousel.Caption className="custom-caption">
-          <h5></h5>
           <p>Our Deluxe Rooms are outfitted with stylish and comfortable furnishings with pleasing colors</p>
           <p>Comfort, service, elegance, always delivered</p>
         </Carousel.Caption>
@@ -134,7 +140,6 @@ const handleAddToCart = (room) => {
           height={550}
         />
         <Carousel.Caption className="custom-caption">
-          <h5></h5>
           <p>Deluxe rooms in hotels offer a step up from standard rooms</p>
           <p>Experience comfort, luxury, top hospitality</p>
         </Carousel.Caption>
@@ -143,7 +148,7 @@ const handleAddToCart = (room) => {
   </Col>
 </Row>
      <br/>
-      <h2 Style="text-align:center">More of Our Specialties</h2>
+      <h2 style={{textAlign: 'center'}}>More of Our Specialties</h2>
  <div class="deluxe" > 
  <Col>
         {[
@@ -157,7 +162,7 @@ const handleAddToCart = (room) => {
           className="mb-2"
           >
           <Card.Header><h3>Daining Halls</h3></Card.Header>
-          <Card.Body class="g-4 padding:auto">
+          <Card.Body className="g-4 padding:auto">
             <Card.Title></Card.Title>
             <Card.Img variant="top" src="https://media.istockphoto.com/id/162137765/photo/summer-swimming-pool.jpg?s=612x612&w=0&k=20&c=Wv3DeS8S-yygZpJ6eE90iu7861DRVd177MlGTZVWd1I=
 "
@@ -244,7 +249,7 @@ const handleAddToCart = (room) => {
               <Card.Body>
                 <Card.Title>{room.title}</Card.Title>
                 <Card.Text>{room.description}</Card.Text>
-                <Card.Text><strong>{room.price}</strong></Card.Text>
+                <Card.Text><strong>{room.displayPrice}</strong></Card.Text>
                 <div className="d-flex justify-content-between">
                  <Button variant="primary" onClick={() => handleAddToCart(room)}>Add to Cart</Button>
 
@@ -260,7 +265,7 @@ const handleAddToCart = (room) => {
       <div>
 <footer>
   
-<div class="first">
+<div className="first">
 <h1>Contact Us</h1>
       <h4>Luxury Stay Hotel</h4>
       <p>Experience the finest in hospitality and comfort.</p>

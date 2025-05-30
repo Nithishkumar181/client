@@ -6,6 +6,7 @@ import PrivateRoute from './PrivateRoute';
 
 // Page imports
 import Home from './pages/Home';
+import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Facilities from './pages/Facilities';
@@ -21,7 +22,9 @@ import BookedRooms from './pages/BookedRooms';
 const App = () => {
   const location = useLocation();
   const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
   const isAuth = Boolean(token);
+  const isAdmin = user.role === 'admin';
 
   // Public routes that don't need the navbar
   const publicRoutes = ['/login', '/register'];
@@ -33,10 +36,18 @@ const App = () => {
       
       <Routes>
         {/* Public Routes */}
-        <Route path="/login" element={isAuth ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/login" element={isAuth ? <Navigate to={isAdmin ? "/admin" : "/home"} /> : <Login />} />
         <Route path="/register" element={isAuth ? <Navigate to="/home" /> : <Register />} />
+        <Route path="/verify/:token" element={<EmailVerification />} />
         
-        {/* Protected Routes */}
+        {/* Admin Routes */}
+        <Route path="/admin" element={
+          <PrivateRoute>
+            {isAdmin ? <AdminDashboard /> : <Navigate to="/home" />}
+          </PrivateRoute>
+        } />
+        
+        {/* User Routes */}
         <Route path="/home" element={
           <PrivateRoute>
             <Home />
@@ -97,11 +108,25 @@ const App = () => {
           </PrivateRoute>
         } />
 
-        {/* Redirect root to login if not authenticated, home if authenticated */}
-        <Route path="/" element={isAuth ? <Navigate to="/home" /> : <Navigate to="/login" />} />
+        {/* Redirect root based on auth status and role */}
+        <Route
+          path="/"
+          element={
+            isAuth
+              ? <Navigate to={isAdmin ? "/admin" : "/home"} />
+              : <Navigate to="/login" />
+          }
+        />
         
         {/* Catch all other routes */}
-        <Route path="*" element={<Navigate to={isAuth ? "/home" : "/login"} />} />
+        <Route
+          path="*"
+          element={
+            isAuth
+              ? <Navigate to={isAdmin ? "/admin" : "/home"} />
+              : <Navigate to="/login" />
+          }
+        />
       </Routes>
     </div>
   );

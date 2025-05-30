@@ -11,8 +11,8 @@ class ApiError extends Error {
 }
 
 const getToken = () => {
-    const token = sessionStorage.getItem(TOKEN_KEY);
-    const expiry = sessionStorage.getItem(TOKEN_EXPIRY_KEY);
+    const token = localStorage.getItem(TOKEN_KEY);
+    const expiry = localStorage.getItem(TOKEN_EXPIRY_KEY);
     
     if (!token || !expiry) {
         return null;
@@ -20,8 +20,8 @@ const getToken = () => {
 
     // Check if token is expired
     if (Date.now() > parseInt(expiry, 10)) {
-        sessionStorage.removeItem(TOKEN_KEY);
-        sessionStorage.removeItem(TOKEN_EXPIRY_KEY);
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(TOKEN_EXPIRY_KEY);
         return null;
     }
 
@@ -30,15 +30,15 @@ const getToken = () => {
 
 const setToken = (token) => {
     if (!token) {
-        sessionStorage.removeItem(TOKEN_KEY);
-        sessionStorage.removeItem(TOKEN_EXPIRY_KEY);
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(TOKEN_EXPIRY_KEY);
         return;
     }
 
     // Set token expiry to 23 hours (1 hour before actual expiry)
     const expiry = Date.now() + (23 * 60 * 60 * 1000);
-    sessionStorage.setItem(TOKEN_KEY, token);
-    sessionStorage.setItem(TOKEN_EXPIRY_KEY, expiry.toString());
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(TOKEN_EXPIRY_KEY, expiry.toString());
 };
 
 const fetchWithTimeout = async (url, options = {}, timeout = 5000) => {
@@ -85,14 +85,29 @@ export const api = {
                 headers
             });
 
-            const data = await response.json();
+            let data;
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                data = await response.json();
+            } else {
+                data = { message: 'Non-JSON response received' };
+            }
 
             if (!response.ok) {
+                console.error('API Error:', {
+                    status: response.status,
+                    endpoint: endpoint,
+                    data: data
+                });
+
                 // Handle token expiration
                 if (response.status === 401 && data.message === 'Token expired') {
                     setToken(null);
                 }
-                throw new ApiError(data.message || 'Request failed', response.status);
+                throw new ApiError(
+                    data.message || `Request failed: ${response.status} ${response.statusText}`,
+                    response.status
+                );
             }
 
             return data;
@@ -103,13 +118,18 @@ export const api = {
             if (!navigator.onLine) {
                 throw new ApiError('No internet connection', 0);
             }
-            throw new ApiError('Network error', 500);
+            console.error('Network Error:', {
+                error: error,
+                endpoint: endpoint
+            });
+            throw new ApiError(`Network error: ${error.message}`, 500);
         }
     },
 
-    async login(email, password) {
+    async login(email, password, role = 'user') {
         try {
-            const data = await this.request('/admin-login', {
+            const endpoint = role === 'admin' ? '/admin-login' : '/login';
+            const data = await this.request(endpoint, {
                 method: 'POST',
                 body: JSON.stringify({ email, password })
             });
@@ -122,6 +142,17 @@ export const api = {
         } catch (error) {
             throw error;
         }
+    },
+
+    async register(userData) {
+        return await this.request('/register', {
+            method: 'POST',
+            body: JSON.stringify(userData)
+        });
+    },
+
+    async verifyEmail(token) {
+        return await this.request(`/verify/${token}`);
     },
 
     async logout() {

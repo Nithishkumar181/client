@@ -5,8 +5,9 @@ import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('admin@example.com'); // Pre-filled for testing
-  const [password, setPassword] = useState('admin123!@#'); // Pre-filled for testing
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('user'); // Default to user login
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [serverStatus, setServerStatus] = useState('checking');
@@ -18,8 +19,7 @@ const Login = () => {
 
   const checkServer = async () => {
     try {
-      const result = await api.testConnection();
-      console.log('Server test result:', result);
+      await api.testConnection();
       setServerStatus('connected');
       setError('');
     } catch (error) {
@@ -35,12 +35,12 @@ const Login = () => {
     setError('');
 
     try {
-      console.log('Attempting login with:', { email, password });
       const data = await api.login(email, password);
-      console.log('Login response:', data);
-
+      
       if (data.success) {
-        console.log('Login successful, redirecting...');
+        // Store token and user data
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
         navigate('/home');
       } else {
         setError(data.message || 'Login failed');
@@ -57,6 +57,24 @@ const Login = () => {
     <div className="boss">
       <form className="login-form" onSubmit={handleSubmit}>
         <h1>Welcome!</h1>
+        <p>Please select your role to continue</p>
+
+        <div className="role-selector">
+          <button
+            type="button"
+            className={`role-btn ${role === 'user' ? 'active' : ''}`}
+            onClick={() => setRole('user')}
+          >
+            User Login
+          </button>
+          <button
+            type="button"
+            className={`role-btn ${role === 'admin' ? 'active' : ''}`}
+            onClick={() => setRole('admin')}
+          >
+            Admin Login
+          </button>
+        </div>
 
         {/* Server Status Indicator */}
         <div style={{ 
@@ -128,33 +146,29 @@ const Login = () => {
         </button>
 
         {loading && (
-          <div style={{ 
-            textAlign: 'center', 
+          <div style={{
+            textAlign: 'center',
             marginTop: '10px',
             color: '#666'
           }}>
             Please wait...
           </div>
         )}
+
+        {role === 'user' && (
+          <div className="register-prompt">
+            <p>Don't have an account?</p>
+            <button
+              type="button"
+              className="register-link"
+              onClick={() => navigate('/register')}
+            >
+              Register Now
+            </button>
+          </div>
+        )}
       </form>
 
-      {/* Debug Information */}
-      {process.env.NODE_ENV === 'development' && (
-        <div style={{ 
-          marginTop: '20px', 
-          padding: '10px', 
-          background: '#f5f5f5',
-          borderRadius: '4px',
-          fontSize: '12px'
-        }}>
-          <h4>Debug Info:</h4>
-          <pre>
-            Server Status: {serverStatus}
-            {'\n'}
-            API URL: {process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}
-          </pre>
-        </div>
-      )}
     </div>
   );
 };
