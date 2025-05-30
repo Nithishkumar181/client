@@ -35,13 +35,19 @@ const Login = () => {
     setError('');
 
     try {
-      const data = await api.login(email, password);
+      const data = await api.login(email, password, role);
       
       if (data.success) {
         // Store token and user data
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/home');
+        
+        // Navigate based on user role
+        if (data.user.role === 'admin') {
+          navigate('/admin-dashboard');
+        } else {
+          navigate('/home');
+        }
       } else {
         setError(data.message || 'Login failed');
       }
@@ -168,7 +174,6 @@ const Login = () => {
           </div>
         )}
       </form>
-
     </div>
   );
 };

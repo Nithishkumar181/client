@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import NavbarEx from './Navbar';
 import PrivateRoute from './PrivateRoute';
+import EmailVerification from './pages/EmailVerification';
 
 // Page imports
 import Home from './pages/Home';
@@ -27,8 +28,8 @@ const App = () => {
   const isAdmin = user.role === 'admin';
 
   // Public routes that don't need the navbar
-  const publicRoutes = ['/login', '/register'];
-  const showNavbar = isAuth && !publicRoutes.includes(location.pathname);
+  const publicRoutes = ['/login', '/register', '/verify'];
+  const showNavbar = isAuth && !publicRoutes.some(route => location.pathname.startsWith(route));
 
   return (
     <div>
@@ -36,17 +37,35 @@ const App = () => {
       
       <Routes>
         {/* Public Routes */}
-        <Route path="/login" element={isAuth ? <Navigate to={isAdmin ? "/admin" : "/home"} /> : <Login />} />
+        <Route path="/login" element={isAuth ? <Navigate to={isAdmin ? "/admin-dashboard" : "/home"} /> : <Login />} />
         <Route path="/register" element={isAuth ? <Navigate to="/home" /> : <Register />} />
         <Route path="/verify/:token" element={<EmailVerification />} />
         
         {/* Admin Routes */}
-        <Route path="/admin" element={
-          <PrivateRoute>
-            {isAdmin ? <AdminDashboard /> : <Navigate to="/home" />}
+        <Route path="/admin-dashboard" element={
+          <PrivateRoute requiredRole="admin">
+            <AdminDashboard />
           </PrivateRoute>
         } />
         
+        <Route path="/listcustomers" element={
+          <PrivateRoute requiredRole="admin">
+            <ListCustomers />
+          </PrivateRoute>
+        } />
+        
+        <Route path="/updatecustomer" element={
+          <PrivateRoute requiredRole="admin">
+            <UpdateCustomer />
+          </PrivateRoute>
+        } />
+        
+        <Route path="/deletecustomer" element={
+          <PrivateRoute requiredRole="admin">
+            <DeleteCustomer />
+          </PrivateRoute>
+        } />
+
         {/* User Routes */}
         <Route path="/home" element={
           <PrivateRoute>
@@ -84,46 +103,27 @@ const App = () => {
           </PrivateRoute>
         } />
         
-        <Route path="/listcustomers" element={
-          <PrivateRoute>
-            <ListCustomers />
-          </PrivateRoute>
-        } />
-        
-        <Route path="/updatecustomer" element={
-          <PrivateRoute>
-            <UpdateCustomer />
-          </PrivateRoute>
-        } />
-        
-        <Route path="/deletecustomer" element={
-          <PrivateRoute>
-            <DeleteCustomer />
-          </PrivateRoute>
-        } />
-        
         <Route path="/about" element={
           <PrivateRoute>
             <About />
           </PrivateRoute>
         } />
 
-        {/* Redirect root based on auth status and role */}
+        {/* Redirect root and unknown routes based on auth status and role */}
         <Route
           path="/"
           element={
             isAuth
-              ? <Navigate to={isAdmin ? "/admin" : "/home"} />
+              ? <Navigate to={isAdmin ? "/admin-dashboard" : "/home"} />
               : <Navigate to="/login" />
           }
         />
         
-        {/* Catch all other routes */}
         <Route
           path="*"
           element={
             isAuth
-              ? <Navigate to={isAdmin ? "/admin" : "/home"} />
+              ? <Navigate to={isAdmin ? "/admin-dashboard" : "/home"} />
               : <Navigate to="/login" />
           }
         />

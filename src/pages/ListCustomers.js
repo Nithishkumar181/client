@@ -6,7 +6,11 @@ function ListCustomers() {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     axios.get("https://livebackend-1-07tz.onrender.com/bookings")
+=======
+    axios.get("https://lastbackends.onrender.com/bookings")
+>>>>>>> aec2135 (Initial commit with backend URL updates)
     .then(res => setBookings(res.data));
   }, []);
 
