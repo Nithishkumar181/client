@@ -8,7 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Facilities from './pages/Facilites';
+import Facilities from './pages/Facilities';
 import Gallery from './pages/Gallery';
 import Services from './pages/Services';
 import ListCustomers from './pages/ListCustomers';
