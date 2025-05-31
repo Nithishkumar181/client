@@ -76,21 +76,13 @@ const BookedRooms = () => {
   }, []);
 
   const fetchBookings = () => {
-<<<<<<< HEAD
-    axios.get('https://livebackend-1-07tz.onrender.com/bookings')
-=======
     axios.get('https://lastbackends.onrender.com/bookings')
->>>>>>> aec2135 (Initial commit with backend URL updates)
       .then((res) => setBookings(res.data))
       .catch((err) => console.error('Error fetching bookings:', err));
   };
 
   const deleteBooking = (id) => {
-<<<<<<< HEAD
-    axios.delete(`https://livebackend-1-07tz.onrender.com/bookings/${id}`)
-=======
     axios.delete(`https://lastbackends.onrender.com/bookings/${id}`)
->>>>>>> aec2135 (Initial commit with backend URL updates)
       .then(() => {
         setBookings((prevBookings) => prevBookings.filter((b) => b.id !== id));
       })

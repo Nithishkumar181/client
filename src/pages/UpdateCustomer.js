@@ -17,12 +17,21 @@ function UpdateCustomer() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+<<<<<<< HEAD
   const handleChange = e => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+=======
+  const handleChange = e =>
+    setupdateData({ ...updatedata, [e.target.name]: e.target.value });
+
+  const update = async () => {
+    await axios.put(`https://lastbackends.onrender.com/update-booking/${room_id}`, updatedata);
+    alert("Booking updated");
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
   };
 
   const validateForm = () => {

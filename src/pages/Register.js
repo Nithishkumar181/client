@@ -42,6 +42,7 @@ const Register = () => {
     }
   };
 
+<<<<<<< HEAD
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -76,6 +77,11 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
+=======
+  const handleSubmit = async () => {
+    await axios.post('https://lastbackends.onrender.com/add-booking/', data);
+    alert('Booking Added');
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
   };
 
   return (

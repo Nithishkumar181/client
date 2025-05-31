@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React, { useState } from 'react';
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
 import { useNavigate } from 'react-router-dom';
-import { api } from '../api';
 import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
+<<<<<<< HEAD
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user'); // Default to user login
@@ -30,11 +34,17 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
+=======
+  const [showForm, setShowForm] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = async (e) => {
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
     e.preventDefault();
-    setLoading(true);
-    setError('');
 
     try {
+<<<<<<< HEAD
       const data = await api.login(email, password, role);
       
       if (data.success) {
@@ -48,19 +58,35 @@ const Login = () => {
         } else {
           navigate('/home');
         }
+=======
+      const res = await fetch('https://lastbackends.onrender.com/admin-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        localStorage.setItem('auth', 'true');
+        localStorage.setItem('user', email);
+        alert(data.message);
+        navigate('/home');
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
       } else {
-        setError(data.message || 'Login failed');
+        alert(data.message || 'Login failed');
       }
     } catch (error) {
+      alert('Server error. Please try again later.');
       console.error('Login error:', error);
-      setError(error.message || 'An error occurred during login');
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <div className="boss">
+<<<<<<< HEAD
       <form className="login-form" onSubmit={handleSubmit}>
         <h1>Welcome!</h1>
         <p>Please select your role to continue</p>
@@ -174,6 +200,52 @@ const Login = () => {
           </div>
         )}
       </form>
+=======
+      {!showForm ? (
+        <button className="login-button" onClick={() => setShowForm(true)}>
+          Login
+        </button>
+      ) : (
+        <form className="login-form" onSubmit={login}>
+          <h1>Welcome!</h1>
+          <p>
+            Create your New Account |{' '}
+            <a
+              href="/register"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/register');
+              }}
+            >
+              Register
+            </a>
+          </p>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" className="submit-button">Login</button>
+        </form>
+      )}
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
     </div>
   );
 };

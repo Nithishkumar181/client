@@ -9,6 +9,7 @@ function DeleteCustomer() {
   const [success, setSuccess] = useState('');
    
   const handleDelete = async () => {
+<<<<<<< HEAD
     if (!roomId.trim()) {
       setError('Please enter a Room ID');
       return;
@@ -28,6 +29,10 @@ function DeleteCustomer() {
     } finally {
       setLoading(false);
     }
+=======
+    await axios.delete(`https://lastbackends.onrender.com/delete-booking/${room_id}`);
+    alert("Booking Deleted");
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
   };
 
   return (

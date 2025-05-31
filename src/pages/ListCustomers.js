@@ -8,6 +8,7 @@ function ListCustomers() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+<<<<<<< HEAD
     const fetchBookings = async () => {
       try {
         const response = await api.getBookings();
@@ -22,6 +23,10 @@ function ListCustomers() {
     };
 
     fetchBookings();
+=======
+    axios.get("https://lastbackends.onrender.com/bookings")
+    .then(res => setBookings(res.data));
+>>>>>>> e917f14f3fe629bb650af9f53e8ce86f240a203e
   }, []);
 
   if (loading) {
